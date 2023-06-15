@@ -1,6 +1,6 @@
-import React from 'react';
-import Favorites from '../Favorites/Favorites';
-import HomePage from '../HomePage/HomePage';
+import React from "react";
+import Favorites from "../Favorites/Favorites";
+import HomePage from "../HomePage/HomePage";
 
 function App(props) {
   return (

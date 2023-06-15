@@ -1,9 +1,52 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
-function HomePage(){
-    return(
-        <h1>Home Pgae</h1>
-    )
+function HomePage() {
+  const dispatch = useDispatch();
+
+  const [search, setSearch] = useState("");
+
+  const gifReducer = useSelector((store) => store.gifs);
+
+  const apiSearch = (event) => {
+    event.preventDefault();
+    console.log("Search is:", search);
+    dispatch({ type: "FETCH_API", payload: search });
+    setSearch("");
+  };
+
+  const addFavorite = () => {
+    dispatch({
+      type: "POST_IMAGES",
+      payload: gifs[i].data.data.images.original.url,
+    });
+  };
+
+  return (
+    <>
+      <h1>Home Page</h1>
+      <form onSubmit={apiSearch}>
+        <input
+          required
+          type="text"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+      <div>
+        {gifReducer.map((gif, i) => (
+          <div key={i}>
+            <img src={gif.images.original.url}></img>
+            <p></p>
+            <button onClick={addFavorite}>Favorite</button>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 }
 
-export default HomePage
+export default HomePage;
