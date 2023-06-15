@@ -7,7 +7,7 @@ function Favorites() {
   const dispatch = useDispatch();
 
   const favoriteList = useSelector((store) => store.favoriteList);
-
+console.log('oh hi mark');
   useEffect(() => {
     dispatch({ type: "FETCH_IMAGES" });
   }, []);
