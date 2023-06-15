@@ -4,49 +4,60 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 function HomePage() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const [search, setSearch] = useState("");
+    const [search, setSearch] = useState("");
 
-  const gifReducer = useSelector((store) => store.gifs);
+    const gifReducer = useSelector((store) => store.gifs);
 
-  const apiSearch = (event) => {
-    event.preventDefault();
-    console.log("Search is:", search);
-    dispatch({ type: "FETCH_API", payload: search });
-    setSearch("");
-  };
+    const apiSearch = (event) => {
+        event.preventDefault();
+        console.log("Search is:", search);
+        dispatch({ type: "FETCH_API", payload: search });
+        setSearch("");
+    };
 
-  const addFavorite = () => {
-    dispatch({
-      type: "POST_IMAGES",
-      payload: gifs[i].data.data.images.original.url,
-    });
-  };
+    const addFavorite = (event) => {
+        console.log('favorite is: ', event.target.value)
+        dispatch({
+            type: "POST_IMAGES",
+            payload: event.target.value
+        });
+    };
 
-  return (
-    <>
-      <h1>Home Page</h1>
-      <form onSubmit={apiSearch}>
-        <input
-          required
-          type="text"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
-      <div>
-        {gifReducer.map((gif, i) => (
-          <div key={i}>
-            <img src={gif.images.original.url}></img>
-            <p></p>
-            <button onClick={addFavorite}>Favorite</button>
-          </div>
-        ))}
-      </div>
-    </>
-  );
+    return (
+        <>
+            <h1>Home Page</h1>
+            <div className="dropdown">
+                <button className="dropbtn">Dropdown</button>
+                <div className="dropdown-content">
+                    <a href="#">Funny</a>
+                    <a href="#">NSFW</a>
+                    <a href="#">Happy</a>
+                </div>
+            </div>
+            <form onSubmit={apiSearch}>
+                <input
+                    required
+                    type="text"
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                />
+                <button type="submit">Search</button>
+            </form>
+            <div>
+                {gifReducer.map((gif, i) => (
+                    <div className="image" key={i}>
+                        <img src={gif.images.fixed_height.url}></img>
+
+                        <form>
+                            <button className="favorite" onSubmit={(event) => { addFavorite }}>Favorite</button>
+                        </form>
+                    </div>
+                ))}
+            </div>
+        </>
+    );
 }
 
 export default HomePage;

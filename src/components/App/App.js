@@ -1,6 +1,7 @@
 import React from "react";
 import Favorites from "../Favorites/Favorites";
 import HomePage from "../HomePage/HomePage";
+import './App.css';
 
 function App(props) {
   return (
