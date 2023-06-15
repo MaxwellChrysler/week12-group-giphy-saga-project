@@ -12,6 +12,7 @@ import logger from 'redux-logger';
 function* rootSaga() {
     yield takeLatest('FETCH_IMAGES' , fetchFav)
     yield takeLatest('POST_IMAGES' , postFav)
+    yield takeLatest('FETCH_API' , searchGif)
 }
 
 // Create a Saga that GETs from the server
@@ -50,6 +51,16 @@ const favoriteList = (state = [], action) => {
     }
 };
 
+const gifs = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_IMAGES':
+            return action.payload
+        default:
+            return state;
+    }
+}
+
+
 function* searchGif(action) {
     try {
         console.log('searchAPI dinged with action:', action.payload);
@@ -59,7 +70,7 @@ function* searchGif(action) {
         console.log('searchAPI response.data is:', gifResponse.data);
         yield put({ type: 'SET_IMAGES', payload: gifResponse.data })
     } catch (error) {
-        console.log('Error with fetchFruits!', error);
+        console.log('Error with searchGif', error);
     }
 }
 
@@ -67,7 +78,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
     combineReducers({
-        favoriteList
+        favoriteList, 
+        gifs
     }),
     applyMiddleware(sagaMiddleware , logger),
 )

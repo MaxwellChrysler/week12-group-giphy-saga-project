@@ -15,22 +15,21 @@ const dispatch = useDispatch();
   },[]);
 
 
-//   const renderFavorites = () => {
-//     dispatch({ type: FETCH_IMAGES, payload: {} });
-//   };
+
+
 
   return (
 
   
    <ul>
-    {favoriteList.map((favorite,i) =>{
+    {/* {favoriteList.map((favorite,i) =>{
         return(
            
             <FavoritesItem key = {i} favorite={favorite}/>
             
             );
         
-    })}
+    })} */}
 
     </ul>
   )
