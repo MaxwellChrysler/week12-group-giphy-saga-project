@@ -4,25 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 function Favorites() {
-const dispatch = useDispatch();
-
-
+  const dispatch = useDispatch();
 
   const favoriteList = useSelector((store) => store.favoriteList);
 
-  useEffect(()=>{
-    dispatch({ type: 'FETCH_IMAGES'});
-  },[]);
-
-
-
-
+  useEffect(() => {
+    dispatch({ type: "FETCH_IMAGES" });
+  }, []);
 
   return (
-
-  
-   <ul>
-    {/* {favoriteList.map((favorite,i) =>{
+    <ul>
+      {/* {favoriteList.map((favorite,i) =>{
         return(
            
             <FavoritesItem key = {i} favorite={favorite}/>
@@ -30,11 +22,8 @@ const dispatch = useDispatch();
             );
         
     })} */}
-
     </ul>
-  )
-
+  );
 }
-
 
 export default Favorites;

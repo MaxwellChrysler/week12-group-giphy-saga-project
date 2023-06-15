@@ -54,7 +54,7 @@ const favoriteList = (state = [], action) => {
 const gifs = (state = [], action) => {
     switch (action.type) {
         case 'SET_IMAGES':
-            return action.payload
+            return action.payload.data
         default:
             return state;
     }
