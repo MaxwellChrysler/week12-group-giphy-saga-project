@@ -33,12 +33,12 @@ function HomePage() {
   }
 
   return (
-    <>
-    <header >
+<div>
+    <div className="container" >
   <div className="center">
     <button className="switchPages" onClick={handleSubmit}>Go to favorites </button>
   </div>
-</header>
+
     
     
       <h1>Home Page</h1>
@@ -71,7 +71,8 @@ function HomePage() {
                     </div>
                 ))}
             </div>
-        </>
+            </div>
+            </div>
     );
 }
 

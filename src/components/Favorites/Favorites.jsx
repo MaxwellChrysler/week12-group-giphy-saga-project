@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./Favorites.css";
+import FavoritesItem  from "./FavoritesItem";
 
 function Favorites() {
   const dispatch = useDispatch();
@@ -21,13 +22,15 @@ function Favorites() {
   };
 
   return (
-    <header >
+    <div>
+   
   <div className="center">
     <button className="switchPages" onClick={handleSubmit}>Go to favorites </button>
+   
   </div>
-</header>
 
-    
+<FavoritesItem/>
+</div>
   );
 }
 

@@ -11,7 +11,7 @@ function FavoritesItem() {
     dispatch({ type: FETCH_IMAGES, payload: {} });
   };
 
-  return <h1>hellow world</h1>;
+  return <h1>hello world</h1>;
 }
 
 export default FavoritesItem;
