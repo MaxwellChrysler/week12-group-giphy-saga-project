@@ -2,31 +2,44 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import './HomePage.css'
 
 function HomePage() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const history = useHistory()
 
-    const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
-    const gifReducer = useSelector((store) => store.gifs);
+  const gifReducer = useSelector((store) => store.gifs);
 
-    const apiSearch = (event) => {
-        event.preventDefault();
-        console.log("Search is:", search);
-        dispatch({ type: "FETCH_API", payload: search });
-        setSearch("");
-    };
+  const apiSearch = (event) => {
+    event.preventDefault();
+    console.log("Search is:", search);
+    dispatch({ type: "FETCH_API", payload: search });
+    setSearch("");
+  };
 
-    const addFavorite = (event) => {
-        console.log('favorite is: ', event.target.value)
-        dispatch({
-            type: "POST_IMAGES",
-            payload: event.target.value
-        });
-    };
+  const addFavorite = () => {
+    dispatch({
+      type: "POST_IMAGES",
+      payload: gifs[i].data.data.images.original.url,
+    });
+  };
 
-    return (
-        <>
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    history.push('/favorites')
+  }
+
+  return (
+    <>
+    <header >
+  <div className="center">
+    <button className="switchPages" onClick={handleSubmit}>Go to favorites </button>
+  </div>
+</header>
+
             <h1>Home Page</h1>
             <div className="dropdown">
                 <button className="dropbtn">Dropdown</button>

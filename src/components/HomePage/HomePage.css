@@ -1,0 +1,19 @@
+.switchPages {
+
+    height:50px;
+    width:100px;
+}
+header {
+    height: 10px;
+    position: relative;
+    /* border: 3px solid green; */
+  }
+  
+  .center {
+    margin: 0;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
