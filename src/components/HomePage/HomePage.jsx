@@ -39,11 +39,9 @@ function HomePage() {
     <button className="switchPages" onClick={handleSubmit}>Go to favorites </button>
   </div>
 </header>
-    
-    
-      <h1>Home Page</h1>
-       
-      <div className="dropdown">
+
+            <h1>Home Page</h1>
+            <div className="dropdown">
                 <button className="dropbtn">Dropdown</button>
                 <div className="dropdown-content">
                     <a href="#">Funny</a>
