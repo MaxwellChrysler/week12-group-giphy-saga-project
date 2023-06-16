@@ -2,9 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import './HomePage.css'
 
 function HomePage() {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const [search, setSearch] = useState("");
 
@@ -24,29 +27,52 @@ function HomePage() {
     });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    history.push('/favorites')
+  }
+
   return (
     <>
+    <header >
+  <div className="center">
+    <button className="switchPages" onClick={handleSubmit}>Go to favorites </button>
+  </div>
+</header>
+    
+    
       <h1>Home Page</h1>
-      <form onSubmit={apiSearch}>
-        <input
-          required
-          type="text"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
-      <div>
-        {gifReducer.map((gif, i) => (
-          <div key={i}>
-            <img src={gif.images.original.url}></img>
-            <p></p>
-            <button onClick={addFavorite}>Favorite</button>
-          </div>
-        ))}
-      </div>
-    </>
-  );
+       
+      <div className="dropdown">
+                <button className="dropbtn">Dropdown</button>
+                <div className="dropdown-content">
+                    <a href="#">Funny</a>
+                    <a href="#">NSFW</a>
+                    <a href="#">Happy</a>
+                </div>
+            </div>
+            <form onSubmit={apiSearch}>
+                <input
+                    required
+                    type="text"
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                />
+                <button type="submit">Search</button>
+            </form>
+            <div>
+                {gifReducer.map((gif, i) => (
+                    <div className="image" key={i}>
+                        <img src={gif.images.fixed_height.url}></img>
+
+                        <form>
+                            <button className="favorite" onSubmit={(event) => { addFavorite }}>Favorite</button>
+                        </form>
+                    </div>
+                ))}
+            </div>
+        </>
+    );
 }
 
 export default HomePage;
